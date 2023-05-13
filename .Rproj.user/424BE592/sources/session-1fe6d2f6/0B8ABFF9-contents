@@ -1,0 +1,25 @@
+df = read.csv('data.csv')
+
+#demerits per unit
+#d = 100a + 50b + 10c + d + e
+
+d=c();
+
+for (i in 1:length(df[[1]])){
+  sum = 100*df$A[i] + 50*df$B[i] + 10*df$C[i] + df$D[i] + df$E[i];
+  d = append(d, sum);
+}
+
+meanA = sum(df$A)/length(df$A);
+meanB = sum(df$B)/length(df$B);
+meanC = sum(df$C)/length(df$C);
+meanD = sum(df$D)/length(df$D);
+meanE = sum(df$E)/length(df$E);
+
+D = sum(d);
+mean = D/length(df[[1]]);
+std = sqrt(((100^2)*meanA + (50^2)*meanB + (10^2)*meanC + meanD + meanE)/length(df$A))
+UCL = mean + 3*std
+LCL = mean + 3*std
+
+#plot total number of demerits
